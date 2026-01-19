@@ -24,6 +24,7 @@ L’interface offre plusieurs outils d’analyse : sélection de capteurs, choix
 ├── templates/
 │   └── index.html                    # Interface utilisateur
 
+
 Code
 
 ## Installation
@@ -57,6 +58,32 @@ http://localhost:5000
 Données utilisées
 Le fichier occupation_parkings_et_velos.txt contient les données brutes issues des capteurs.
 Les scripts Python se chargent de parser, filtrer et visualiser ces données selon les choix de l’utilisateur.
+```
+Utilisation des données
+Avant de lancer l’application Flask, il est nécessaire de générer le fichier occupation_parkings_et_velos.txt utilisé pour l’affichage des graphiques.
+Pour cela, il faut exécuter le script generateur_occupation.py, qui interroge régulièrement les API de Montpellier Méditerranée Métropole et enregistre les données dans deux fichiers :
+```bash
+occupation_parkings_et_velos.txt (format texte utilisé par l’application Flask)
 
+occupation_parkings_et_velos.json (version structurée des données brutes)
 
+Le script permet de définir :
+
+la période d’échantillonnage (intervalle entre deux acquisitions, en secondes)
+
+la durée totale d’acquisition (en secondes)
+
+Exemple d’utilisation :
+
+python
+# acquisition toutes les 30 minutes pendant 7 jours
+acquisition(1800, 604800)
+Une fois la période d’échantillonnage et la durée d’acquisition réglées, lancer le script :
+
+bash
+python generateur_occupation.py
+À la fin de l’acquisition, les fichiers générés seront disponibles dans le dossier du projet et pourront être utilisés directement par l’application Flask pour l’analyse et la visualisation.
+```
 Projet réalisé par Remi Caravaca et Florent Reus
+
+
