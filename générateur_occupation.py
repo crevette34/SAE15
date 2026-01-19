@@ -54,12 +54,12 @@ def sauvegarder(parkings_data, velo_data):
                 ftxt.write(f"Parking vélo | {nom} | {date_actuelle} {heure_actuelle} | {libres}/{total}\n")
 
 
-def acquisition():
-    Te = 1800  # 30 minutes
-
+def acquisition(Te, duree_acquisition):
     print("Début acquisition...")
+    temps_initial = time.time()
 
-    while True:
+    while time.time() - temps_initial < duree_acquisition:
+
         parkings = recupere_data(url_parking)
         velos = recupere_data(url_velo)
 
@@ -71,6 +71,8 @@ def acquisition():
 
         time.sleep(Te)
 
+    print("Fin acquisition.")
+    
 
 if __name__ == "__main__":
-    acquisition()
+    acquisition(1800, 604800) # 30 intervale et 7 jours total
