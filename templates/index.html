@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Génération de graphiques</title>
+
+    <!-- Lien vers ton fichier CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}">
+
+    <script>
+        function toggleType() {
+            const type = document.querySelector('input[name="type"]:checked').value;
+
+            document.getElementById("liste_parking").style.display =
+                (type === "parking") ? "block" : "none";
+
+            document.getElementById("liste_velo").style.display =
+                (type === "velo") ? "block" : "none";
+        }
+
+        function selectAll(checked) {
+            const type = document.querySelector('input[name="type"]:checked').value;
+            const container = (type === "parking") ? "liste_parking" : "liste_velo";
+
+            document.querySelectorAll(`#${container} input[type=checkbox]`).forEach(cb => {
+                cb.checked = checked;
+            });
+        }
+
+        window.onload = toggleType;
+    </script>
+</head>
+
+<body>
+
+<h1>Génération de graphiques</h1>
+
+<form action="/graph" method="get" target="result">
+
+    <!-- TYPE -->
+    <div class="section">
+        <strong>Type :</strong><br>
+        <label><input type="radio" name="type" value="parking" checked onchange="toggleType()"> Parkings</label>
+        <label><input type="radio" name="type" value="velo" onchange="toggleType()"> Stations vélo</label>
+    </div>
+
+    <!-- SELECT / DESELECT -->
+    <div class="section">
+        <button type="button" onclick="selectAll(true)">Tout sélectionner</button>
+        <button type="button" onclick="selectAll(false)">Tout désélectionner</button>
+    </div>
+
+    <!-- LISTE PARKINGS -->
+    <div id="liste_parking" class="section">
+        <strong>Parkings voitures :</strong><br>
+        {% for p in parkings %}
+            <label><input type="checkbox" name="select" value="{{ p }}"> {{ p }}</label>
+        {% endfor %}
+    </div>
+
+    <!-- LISTE VELOS -->
+    <div id="liste_velo" class="section" style="display:none;">
+        <strong>Stations vélo :</strong><br>
+        {% for v in velos %}
+            <label><input type="checkbox" name="select" value="{{ v }}"> {{ v }}</label>
+        {% endfor %}
+    </div>
+
+    <!-- PERIODE -->
+    <div class="section">
+        <strong>Période :</strong><br>
+        <select name="duree">
+            <option value="tout">Tout</option>
+            <option value="12h">12h</option>
+            <option value="1j">1 jour</option>
+            <option value="2j">2 jours</option>
+            <option value="7j">7 jours</option>
+            <option value="14j">14 jours</option>
+            <option value="30j">30 jours</option>
+        </select>
+    </div>
+
+    <!-- MODELE -->
+    <div class="section">
+        <strong>Modèle :</strong><br>
+        <select name="model">
+            {% for m in models %}
+                <option value="{{ m }}">{{ m }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit">Afficher</button>
+
+</form>
+
+<hr>
+
+<!-- HEATMAP -->
+<div class="section">
+    <strong>Heatmap :</strong><br>
+    <button type="button" onclick="document.querySelector('iframe[name=result]').src='/heatmap'">
+        Afficher la heatmap
+    </button>
+</div>
+
+<h2>Résultat :</h2>
+<iframe name="result" style="width:100%; height:900px;"></iframe>
+
+</body>
+</html>

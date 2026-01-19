@@ -1,0 +1,69 @@
+body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.section {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.section strong {
+    font-size: 15px;
+    color: #34495e;
+}
+
+button {
+    background: #3498db;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+label {
+    display: block;
+    margin: 4px 0;
+    cursor: pointer;
+}
+
+select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+#liste_parking, #liste_velo {
+    margin-top: 12px;
+    padding-left: 10px;
+}
+
+iframe {
+    border: none;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
