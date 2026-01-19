@@ -59,4 +59,4 @@ Le fichier occupation_parkings_et_velos.txt contient les données brutes issues 
 Les scripts Python se chargent de parser, filtrer et visualiser ces données selon les choix de l’utilisateur.
 
 
-Projet réalisé par Remi Caravaca et Florent Reuss
+Projet réalisé par Remi Caravaca et Florent Reus
