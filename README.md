@@ -12,21 +12,6 @@ L’interface offre plusieurs outils d’analyse : sélection de capteurs, choix
 - Affichage dynamique des résultats dans une iframe
 - Heatmap générée à partir des données brutes
 
-## Structure du projet
-
-├── app.py                                    # Application Flask principale
-├── heatmap_popup.py        # Script de génération de la heatmap
-├── requirement.txt                  # Liste des dépendances Python
-├── data/
-│   └── occupation_parkings_et_velos.txt
-├── static/
-│   └── site.css                        # Feuille de style de l’interface
-├── templates/
-│   └── index.html                    # Interface utilisateur
-
-
-Code
-
 ## Installation
 
 1. Cloner le dépôt :
